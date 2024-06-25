@@ -4,6 +4,8 @@ import Box from '@mui/material/Box';
 import { randomSentence } from '../../scripts/randomSentence';
 import { useState } from 'react';
 import TableData from '../tableData';
+import ParsingTable from '../parsingTable';
+import { table } from '../../consts/consts';
 
 interface InputsProps {
   sentence: string;
@@ -46,65 +48,70 @@ export default function Inputs({
   };
 
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        gap: 2,
-        marginTop: 2,
-      }}
-    >
-      <TextField
-        variant="outlined"
-        value={sentence}
-        onChange={(e) => {
-          setSentence(e.target.value);
-          setInfoObj(clearInfoObj);
-        }}
-        sx={{ width: '100%', maxWidth: '500px' }} 
-      />
+    <>
+      <Box sx={{ display: 'flex', p: 3 }}>
+        <ParsingTable table={table} />
+      </Box>
       <Box
         sx={{
           display: 'flex',
-          gap: 1,
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: 2,
+          marginTop: 2,
         }}
       >
-        <Button
-          variant="contained"
-          sx={{
-            backgroundColor: '#6a5acd',
-            '&:hover': { backgroundColor: '#483d8b' },
-          }}
-          onClick={() => {
-            handleGenerateClick();
+        <TextField
+          variant="outlined"
+          value={sentence}
+          onChange={(e) => {
+            setSentence(e.target.value);
             setInfoObj(clearInfoObj);
           }}
-        >
-          Gerar
-        </Button>
-        <Button
-          variant="contained"
+          sx={{ width: '100%', maxWidth: '500px' }}
+        />
+        <Box
           sx={{
-            backgroundColor: '#4682b4',
-            '&:hover': { backgroundColor: '#4169e1' },
+            display: 'flex',
+            gap: 1,
           }}
-          onClick={() => setInfoObj(() => stepByStepAnalisis(sentence))}
         >
-          Passo a passo
-        </Button>
-        <Button
-          variant="contained"
-          sx={{
-            backgroundColor: '#6a5acd',
-            '&:hover': { backgroundColor: '#483d8b' },
-          }}
-          onClick={() => setInfoObj(oneStepAnalisis(sentence))}
-        >
-          Verificar
-        </Button>
+          <Button
+            variant="contained"
+            sx={{
+              backgroundColor: '#6a5acd',
+              '&:hover': { backgroundColor: '#483d8b' },
+            }}
+            onClick={() => {
+              handleGenerateClick();
+              setInfoObj(clearInfoObj);
+            }}
+          >
+            Gerar
+          </Button>
+          <Button
+            variant="contained"
+            sx={{
+              backgroundColor: '#4682b4',
+              '&:hover': { backgroundColor: '#4169e1' },
+            }}
+            onClick={() => setInfoObj(() => stepByStepAnalisis(sentence))}
+          >
+            Passo a passo
+          </Button>
+          <Button
+            variant="contained"
+            sx={{
+              backgroundColor: '#6a5acd',
+              '&:hover': { backgroundColor: '#483d8b' },
+            }}
+            onClick={() => setInfoObj(oneStepAnalisis(sentence))}
+          >
+            Verificar
+          </Button>
+        </Box>
+        <TableData data={infoObj.table} accepted={infoObj.accepted} />
       </Box>
-      <TableData data={infoObj.table} accepted={infoObj.accepted} />
-    </Box>
+    </>
   );
 }

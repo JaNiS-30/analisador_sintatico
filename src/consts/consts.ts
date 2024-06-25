@@ -44,7 +44,10 @@ export const table: ParsingTable = {
     d: ['d', 'A', 'c'],
   },
   C: {
+    a: ['ε'],
     b: ['b', 'A'],
+    c: ['ε'],
+    d: ['ε'],
     $: ['ε'],
   },
 };

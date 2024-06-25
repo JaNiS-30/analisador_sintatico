@@ -135,7 +135,7 @@ function App() {
           </Typography>
           <Typography variant="body1" component="div">
             por:{' '}
-            <Link href="https://github.com/JaNiS-30/" color="inherit">
+            <Link href="https://github.com/JaNiS-30/analisador_sintatico" color="inherit">
               Giani Pertuzatti
             </Link>
           </Typography>
