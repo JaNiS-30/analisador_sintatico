@@ -65,7 +65,7 @@ export default function Inputs({
           variant="outlined"
           value={sentence}
           onChange={(e) => {
-            setSentence(e.target.value);
+            setSentence((e.target.value).trim());
             setInfoObj(clearInfoObj);
           }}
           sx={{ width: '100%', maxWidth: '500px' }}
