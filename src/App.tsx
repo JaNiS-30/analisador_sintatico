@@ -39,10 +39,8 @@ function App() {
       input: input.join(''),
     };
 
-    // topo da pilha
     let topStack = stack[stack.length - 1];
 
-    // simbolo atual na entrada
     let inSimbol = input[0] || '';
 
     // se o topo for o final da pilha e o simbolo de entrada também, foi aceito
@@ -81,27 +79,22 @@ function App() {
             stack.push(toStack[j]);
           }
         }
-
-        // se a análise não for válida, finaliza a mesma com erro
       } else {
         analising = false;
         accepted = false;
         debugRow.action = 'Erro em ' + iteration + ' iterações';
       }
     }
-    // incrementa a iteração e coloca a linha gerada na tabela de derivação
+
     iteration++;
     debugTable.push(debugRow);
   }
 
   function oneStepAnalisis(sentence: string) {
-    // limpa as variáveis globais
     cleanGlobals();
 
-    // transforma a entrada em array
     input = (sentence + '$').split('');
 
-    // executa todos os passos até o final
     while (analising) {
       makeStep();
     }

@@ -62,7 +62,7 @@ export default function Inputs({
           setSentence(e.target.value);
           setInfoObj(clearInfoObj);
         }}
-        sx={{ width: '100%', maxWidth: '500px' }} // Aumentando o tamanho do TextField
+        sx={{ width: '100%', maxWidth: '500px' }} 
       />
       <Box
         sx={{
