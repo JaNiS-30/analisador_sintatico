@@ -32,7 +32,6 @@ function App() {
   }
 
   function makeStep() {
-    // cria a linha da tabela de derivação
     let debugRow: DebugRow = {
       iter: iteration,
       stack: stack.join(''),
@@ -43,37 +42,29 @@ function App() {
 
     let inSimbol = input[0] || '';
 
-    // se o topo for o final da pilha e o simbolo de entrada também, foi aceito
     if (topStack === '$' && inSimbol === '$') {
       analising = false;
       accepted = true;
       debugRow.action = 'Aceito em ' + iteration + ' iterações';
     } else {
-      // se o topo da pilha for igual ao simbolo da entrada, lê a entrada
       if (topStack === inSimbol) {
         debugRow.action = "Lê '" + inSimbol + "'";
         stack.pop();
         input.shift();
         input = [...input];
 
-        // se existir uma entrada equivalente ao simbolo de entrada ao
-        // não-terminal no topo da pilha na tabela de Parsing
       } else if (
         table[topStack] !== undefined &&
         table[topStack][inSimbol] !== undefined
       ) {
-        // produção em array da tabela de parsing para o simbolo terminal da entrada
         let toStack = table[topStack][inSimbol];
-        // produção em formato de string
+
         let production = toStack.join('');
 
-        // adiciona a ação atual na tabela de derivação
         debugRow.action = topStack + ' -> ' + production;
 
-        // remove o topo da pilha
         stack.pop();
 
-        // se a produção não for vazia (epsilon), coloca seu conteúdo da pilha
         if (production !== 'ε') {
           for (let j = toStack.length - 1; j >= 0; j--) {
             stack.push(toStack[j]);

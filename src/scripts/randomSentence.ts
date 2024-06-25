@@ -5,6 +5,11 @@ export function randomSentence() {
   let generating = true;
   let sentence = '';
   while (generating) {
+    if (sentence.length > 10) {
+      rule = 'S';
+      generating = true;
+      sentence = '';
+    }
     let ruleLength = grammar[rule].length;
     let production = grammar[rule][Math.floor(Math.random() * ruleLength)];
     if (sentence === '') {
